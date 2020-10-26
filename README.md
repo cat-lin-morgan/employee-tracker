@@ -4,16 +4,17 @@ ___
 
 ## Description
 
-This was a project to write backend code using Express.js. We used the GET, POST, DELETE, USE, and ROUTER that Express.js supplies us with. As well as the fs Module that Node supplies us with.
+This was a project to write backend code using Node.js and MySQL.
 
-**Extra:** I decided to try the delete notes bonus, it was hard, but I think I figured it out ok.  It was a ```router.delete``` in my ```apiRoute.js``` and some tricky logic that exists in my lib/notes.js, along with the POST logic. 
+**Extra:** After you run thru the question prompts for adding an employee, role, or department, it gives you a table to see the new entry in the database.
 
-**Other:** For the unique id I went with the npm [UUID](https://www.npmjs.com/package/uuid "Unique ID npm").
+**Regrets:** This week was hectic. I would like to try the bonus eventually, when I have more free time.
 
 
 ![javascript badge](https://img.shields.io/badge/We%20Stan-Javascript-brightgreen)
 ![node badge](https://img.shields.io/badge/Node-Over%20Here-blueviolet)
-![express badge](https://img.shields.io/badge/Express.js-On%20This%20Machine-orange)
+![sql badge](https://img.shields.io/badge/SQL-hurts%20my%20brain-red)
+
 
 ## Table of Contents 
 
@@ -31,15 +32,27 @@ This was a project to write backend code using Express.js. We used the GET, POST
 
 First star it. 
 Then you could either fork it or download a zip file of it.
-You should also have Node installed to your machine and the Express npm.
+You should also have Node and MySQL installed to your machine.
+Then hit ```npm i``` to install all of the packages included in the package.json file.
 
 ## Usage
 
-Here is a link to the deployed [Heroku](https://hidden-brook-85239.herokuapp.com/ "Heroku").
+**I added shortcut commands for npm:**
+
+```npm run schema``` to set up your tables.
+
+```npm run seed``` to set up some starter data for your base.
+
+Then replace with your own root passcode in the db/connection.js
+
+```npm start``` will run the application.
+
+<img src='assets\shortcutscreenshot.png' alt='Screenshot of the application in use.'/>
+
 
 ## Credits
 
-
+My friend **Josh Haglund** helped me understand the MySQL syntax a bit better, my cohorts TA, **Leticia** assisted me in getting my TABLES up amnd running, and my tutor, **Ben Abbot**, helped me get my files and psuedocode all set up.
 
 
 ## How You Can Contribute
@@ -50,9 +63,14 @@ If you find issues open up an issues on the original repo! Fix it or add to it, 
 
 If you'd like to ask further questions you can reach me via [GitHub](https://github.com/cat-lin-morgan/) or email me at plummorgan@gmail.com!
 
-## Screenshot
+## Screenshot and Video Walk-Thru
 
-<img src='notakerscreenshot.png' alt='Screenshot of the application in use.'/>
+### Video Walk-thru
+[Click here for the walk-thru of my application.](https://github.com/cat-lin-morgan/)
+
+### Screenshot
+
+<img src='assets/applicationscreenshot.png' alt='Screenshot of the application in use.'/>
 
 
 ___Thank you___

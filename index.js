@@ -12,8 +12,6 @@ const mainMenuQuestions = () => {
             choices: ['View All Employees',
                 'View All Departments',
                 'View All Roles',
-                // 'View Employees By Manager',
-                // 'View Employees By Department',
                 'Add Employee',
                 'Add Department',
                 'Add Role',
