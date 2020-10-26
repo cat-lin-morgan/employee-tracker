@@ -81,6 +81,14 @@ const getEmployees = function () {
     });
 };
 
+const getDepartments = function () {
+    return connection.promise().query(`SELECT department.name AS name, department.id AS value FROM department`)
+    .then(([rows]) => {
+        console.log(rows);
+        return rows;
+    });
+};
+
 // query to add a role
 const addRole = function (title, salary, department_id) {
     const sql = `INSERT INTO roles (title, salary, department_id) VALUES (?, ?, ?)`;
@@ -133,5 +141,6 @@ module.exports = {
     viewDepartment,
     getRoles,
     getEmployees,
+    getDepartments,
     updateEmployee
 };

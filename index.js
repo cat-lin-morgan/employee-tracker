@@ -12,6 +12,8 @@ const mainMenuQuestions = () => {
             choices: ['View All Employees',
                 'View All Departments',
                 'View All Roles',
+                // 'View Employees By Manager',
+                // 'View Employees By Department',
                 'Add Employee',
                 'Add Department',
                 'Add Role',
@@ -135,9 +137,28 @@ const addRoleQuestions= () => {
                     return false;
                 }
             }
+        },
+        {
+            type: 'number',
+            name: 'salary',
+            message: 'What is the salary of the role?',
+            validate: (celeryInput) => {
+                if (celeryInput) {
+                    return true;
+                } else {
+                    console.log('Nope! You gotta tell us the salary of the role!');
+                    return false;
+                }
+            }
+        },
+        {
+            type: 'list',
+            name: 'departmentId',
+            message: 'What department is this role in?',
+            choices: db.getDepartments
         }
     ]).then( answers => {
-        db.addRole(answers.roleName);
+        db.addRole(answers.roleName, answers.salary, answers.departmentId);
     }).then(mainMenuQuestions)
 };
 
