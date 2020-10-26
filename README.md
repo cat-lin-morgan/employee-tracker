@@ -51,6 +51,9 @@ Then hit ```npm i``` to install all of the packages included in the package.json
 
 Then replace with your own root passcode in the db/connection.js
 
+Once you booted up MuSQL and ran the above commands, you're going to want to use ```use employees;``` and then ```show tables```. I'd recommend using two side by side terminals in your VS Code or b
+editor of choice.
+
 ```npm start``` will run the application.
 
 <img src='assets\shortcutscreenshot.png' alt='Screenshot of the application in use.'/>
@@ -72,7 +75,7 @@ If you'd like to ask further questions you can reach me via [GitHub](https://git
 ## Screenshot and Video Walk-Thru
 
 ### Video Walk-thru
-[Click here for the walk-thru of my application.](https://github.com/cat-lin-morgan/)
+[Click here for the walk-thru of my application.](https://drive.google.com/file/d/1BkFU57Tyg-q52OQlS7ih4fY66eg8qRL5/view)
 
 ### Screenshot
 
