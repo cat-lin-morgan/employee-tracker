@@ -1,44 +1,164 @@
-//this will run the inquirer prompts
-
-const { resolveSoa } = require("dns")
-
+const db = require('./db/index');
+const inquirer = require('inquirer');
 
 
-//view department
-//presented with a formatted table showing department names and department ids
+//this will run the main menu inquirer prompts
+const mainMenuQuestions = () => {
+    inquirer.prompt([
+        {
+            type: 'list',
+            name: 'main_menu',
+            message: 'What would you like to do?',
+            choices: ['View All Employees',
+                'View All Departments',
+                'View All Roles',
+                'Add Employee',
+                'Add Department',
+                'Add Role',
+                'Update Employee']
+        }
+    ]).then(answers => {
+        if('View All Employees' === answers.main_menu){
+            db.viewEmployees().then(mainMenuQuestions);
+        } else if ('View All Departments' === answers.main_menu) {
+            db.viewDepartment().then(mainMenuQuestions);
+        } else if ('View All Roles' === answers.main_menu) {
+            db.viewRoles().then(mainMenuQuestions);
+        } else if ('Add Employee' === answers.main_menu) {
+            addEmployeeQuestions();
+        } else if ('Add Department' === answers.main_menu) {
+            addDepartmentQuestions();
+        } else if ('Add Role' === answers.main_menu) {
+            addRoleQuestions();
+        } else if ('Update Employee' === answers.main_menu) {
+            updateEmployeeQuestions();
+        } else {
+            console.log(answers);
+            mainMenuQuestions();
+        }
+    })
+};
 
+//this will run the add employee inquirer prompts
+const addEmployeeQuestions = () => {
+    inquirer.prompt([
+        {
+            type: 'input',
+            name: 'firstName',
+            message: 'What is their first name?',
+            validate: (firstNameInput) => {
+                if (firstNameInput) {
+                    return true;
+                } else {
+                    console.log('Nope! You gotta tell us their first name!');
+                    return false;
+                }
+            }
+        },
+        {
+            type: 'input',
+            name: 'lastName',
+            message: 'What is their last name?',
+            validate: (lastNameInput) => {
+                if (lastNameInput) {
+                    return true;
+                } else {
+                    console.log('Nope! You gotta tell us their last name!');
+                    return false;
+                }
+            }
+        },
+        {
+            type: 'list',
+            name: 'getRole',
+            message: 'What is their role?',
+            choices: db.getRoles
+        },
+        {
+            type: 'confirm',
+            name: 'confirmManager',
+            message: 'Does this person have a manager?',
+            default: true,
+        },
+        {
+            type: 'list',
+            name: 'getManager',
+            message: 'Who is their manager?',
+            choices: db.getEmployees,
+            when: ({ confirmManager }) => {
+                if (confirmManager) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        }
+    ]).then( answers => {
+        console.log(answers);
+        db.addEmployee(answers.firstName, answers.lastName, answers.getRole, answers.getManager);
+    }).then(mainMenuQuestions);
+};
 
-//view all roles
-//presented with the job title, role id, the department that role belongs to, and the salary for that role
-SELECT roles.title, roles.id AS 'role id' , department.name AS 'department name', roles.salary
-FROM roles
-LEFT JOIN department
-ON roles.department_id = department.id;
+//this will run the add department inquirer prompts
+const addDepartmentQuestions= () => {
+    inquirer.prompt([
+        {
+            type: 'input',
+            name: 'departmentName',
+            message: 'What is the department name',
+            validate: (department) => {
+                if (department) {
+                    return true;
+                } else {
+                    console.log('Nope! You gotta tell us the department name!');
+                    return false;
+                }
+            }
+        }
+    ]).then( answers => {
+        db.addDepartment(answers.departmentName);
+    }).then(mainMenuQuestions)
+};
 
-//view all employees
-//presented with a formatted table showing employee data, including employee ids, first names, last names, job titles, 
-// departments, salaries, and managers that the employees report to
-SELECT employee.id AS 'employee id', employee.first_name AS 'employee first name', employee.last_name AS 'employee last name', 
-roles.title AS 'role title', department.name AS 'department name', roles.salary, 
-concat(manager_t.first_name, ' ', manager_t.last_name) AS manager
-FROM employee
-LEFT JOIN roles
-ON employee.role_id = roles.id
-LEFT JOIN department
-ON roles.department_id = department.id
-LEFT JOIN employee AS manager_t
-ON employee.manager_id = manager_t.id;
+//this will run the add role inquirer prompts
+const addRoleQuestions= () => {
+    inquirer.prompt([
+        {
+            type: 'input',
+            name: 'roleName',
+            message: 'What is the role name',
+            validate: (roleInput) => {
+                if (roleInput) {
+                    return true;
+                } else {
+                    console.log('Nope! You gotta tell us the role name!');
+                    return false;
+                }
+            }
+        }
+    ]).then( answers => {
+        db.addRole(answers.roleName);
+    }).then(mainMenuQuestions)
+};
 
-//add a department, 
-//am prompted to enter the name of the department and that department is added to the database
+//this will run the add role inquirer prompts
+const updateEmployeeQuestions = () => {
+    inquirer.prompt([
+        {
+            type: 'list',
+            name: 'employeeId',
+            message: 'Select which employee to update:',
+            choices: db.getEmployees
+        },
+        {
+            type: 'list',
+            name: 'roleId',
+            message: 'What role would this employee have:',
+            choices: db.getRoles
+        }
+    ]).then( answers => {
+        db.updateEmployee(answers.roleId, answers.employeeId);
+    }).then(mainMenuQuestions)
+};
 
-
-
-//add a role
-//prompted to enter the name, salary, and department for the role and that role is added to the database
-
-//add an employee
-//prompted to enter the employee’s first name, last name, role, and manager and that employee is added to the database
-
-//and update an employee role
-// prompted to select an employee to update and their new role and this information is updated in the database
+mainMenuQuestions();
