@@ -51,7 +51,9 @@ Then hit ```npm i``` to install all of the packages included in the package.json
 
 Then replace with your own root passcode in the db/connection.js
 
-Once you booted up MuSQL and ran the above commands, you're going to want to use ```use employees;``` and then ```show tables```. I'd recommend using two side by side terminals in your VS Code or b
+Once you booted up MySQL and run the above commands, you're going to want to use ```use employees;``` and then ```show tables```. 
+
+I'd recommend using two side by side terminals in your VS Code or your
 editor of choice.
 
 ```npm start``` will run the application.
