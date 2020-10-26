@@ -7,7 +7,7 @@ const cTable = require('console.table');
 const viewDepartment = function () {
     return connection.promise().query(`SELECT department.name AS 'department name', department.id AS 'department id' FROM department;`)
     .then(([rows]) => {
-        console.table('Departments', rows);
+        console.table('All Departments In The Company', rows);
     })
     .catch(err => {
         console.log(err);
@@ -21,7 +21,7 @@ const viewRoles = function () {
         LEFT JOIN department
         ON roles.department_id = department.id;`)
     .then(([rows]) => {
-        console.table('All Roles', rows);
+        console.table('All Roles In The Company', rows);
     })
     .catch(err => {
         console.log(err);
@@ -43,7 +43,7 @@ const viewEmployees = function () {
         LEFT JOIN employee AS manager_t
         ON employee.manager_id = manager_t.id;`)
     .then(([rows]) => {
-        console.table('All Employees In Company', rows);
+        console.table('All Employees In The Company', rows);
     })
     .catch(err => {
         console.log(err);
@@ -57,7 +57,7 @@ const addDepartment = function (name) {
     const sql = `INSERT INTO department (name) VALUES (?)`;
     connection.promise().query(sql, name)
     .then(([results]) => {
-        console.log('\n', results.affectedRows, 'Successfully added a department: ', name, '\n');
+        console.log('\n', 'Successfully added a department: ', name, '\n');
     })
     .then(viewDepartment)
     .catch(err => {
@@ -68,7 +68,7 @@ const addDepartment = function (name) {
 const getRoles = function () {
     return connection.promise().query(`SELECT roles.title AS name, roles.id AS value FROM roles`)
     .then(([rows]) => {
-        console.log(rows);
+        // console.log(rows);
         return rows;
     });
 };
@@ -76,7 +76,7 @@ const getRoles = function () {
 const getEmployees = function () {
     return connection.promise().query(`SELECT concat(employee.first_name, ' ', employee.last_name) AS name, employee.id AS value FROM employee`)
     .then(([rows]) => {
-        console.log(rows);
+        // console.log(rows);
         return rows;
     });
 };
@@ -84,7 +84,7 @@ const getEmployees = function () {
 const getDepartments = function () {
     return connection.promise().query(`SELECT department.name AS name, department.id AS value FROM department`)
     .then(([rows]) => {
-        console.log(rows);
+        // console.log(rows);
         return rows;
     });
 };
@@ -95,7 +95,7 @@ const addRole = function (title, salary, department_id) {
     const params = [title, salary, department_id];
     connection.promise().query(sql, params)
     .then(([results]) => {
-        console.log('\n', results.affectedRows, 'Successfully added a role: ', title, '\n');
+        console.log('\n', 'Successfully added a role: ', title, '\n');
     })
     .then(viewRoles)
     .catch(err => {
@@ -110,7 +110,7 @@ const addEmployee = function (first_name, last_name, role_id, manager_id) {
     const params = [first_name, last_name, role_id, manager_id];
     connection.promise().query(sql, params)
     .then(([results]) => {
-        console.log('\n', results.affectedRows, 'Successfully added a employee: ', first_name, last_name, '\n');
+        console.log('\n', 'Successfully added a employee: ', first_name, last_name, '\n');
     })
     .then(viewEmployees)
     .catch(err => {
@@ -124,7 +124,7 @@ const updateEmployee = function (role_id, employee_id) {
     const params = [role_id, employee_id];
     connection.promise().query(sql, params)
     .then(([results]) => {
-        console.log('\n', results.affectedRows, 'Successfully updated an employee: ', '\n');
+        console.log('\n', 'Successfully updated an employee: ', '\n');
     })
     .then(viewEmployees)
     .catch(err => {

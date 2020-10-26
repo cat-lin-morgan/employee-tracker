@@ -33,7 +33,6 @@ const mainMenuQuestions = () => {
         } else if ('Update Employee' === answers.main_menu) {
             updateEmployeeQuestions();
         } else {
-            console.log(answers);
             mainMenuQuestions();
         }
     })
@@ -94,7 +93,6 @@ const addEmployeeQuestions = () => {
             }
         }
     ]).then( answers => {
-        console.log(answers);
         db.addEmployee(answers.firstName, answers.lastName, answers.getRole, answers.getManager);
     }).then(mainMenuQuestions);
 };

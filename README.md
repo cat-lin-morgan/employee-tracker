@@ -6,7 +6,7 @@ ___
 
 This was a project to write backend code using Node.js and MySQL.
 
-**Extra:** After you run thru the question prompts for adding an employee, role, or department, it gives you a table to see the new entry in the database.
+**Extra:** After you run thru the question prompts for adding an employee, role, or department, it gives you a table to see the new entry in the database. I also added validation to my inquirer prompts so the user would either have to put at least something, or input a number where required.
 
 **Regrets:** This week was hectic. I would like to try the bonus eventually, when I have more free time.
 
@@ -52,7 +52,7 @@ Then replace with your own root passcode in the db/connection.js
 
 ## Credits
 
-My friend **Josh Haglund** helped me understand the MySQL syntax a bit better, my cohorts TA, **Leticia** assisted me in getting my TABLES up amnd running, and my tutor, **Ben Abbot**, helped me get my files and psuedocode all set up.
+My friend **Josh Haglund** helped me understand the MySQL syntax a bit better, my cohort's TA, **Leticia** assisted me in getting my TABLES up amnd running, and my tutor, **Ben Abbot**, helped me get my files and psuedocode all set up.
 
 
 ## How You Can Contribute
