@@ -6,7 +6,11 @@ ___
 
 This was a project to write backend code using Node.js and MySQL.
 
-**Extra:** After you run thru the question prompts for adding an employee, role, or department, it gives you a table to see the new entry in the database. I also added validation to my inquirer prompts so the user would either have to put at least something, or input a number where required.
+I used three Node Package Modules: [MySQL2](https://www.npmjs.com/package/mysql2), [Inquirer](https://www.npmjs.com/package/inquirer), and [console.table package](https://www.npmjs.com/package/console.table).
+
+**Extra:** After you run thru the question prompts for adding an employee, role, or department, it gives you a table to see the new entry in the database. 
+
+I also added validation to my inquirer prompts so the user would either have to put at least something, or input a number where required.
 
 **Regrets:** This week was hectic. I would like to try the bonus eventually, when I have more free time.
 
@@ -32,7 +36,9 @@ This was a project to write backend code using Node.js and MySQL.
 
 First star it. 
 Then you could either fork it or download a zip file of it.
+
 You should also have Node and MySQL installed to your machine.
+
 Then hit ```npm i``` to install all of the packages included in the package.json file.
 
 ## Usage
