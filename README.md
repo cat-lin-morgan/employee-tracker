@@ -4,7 +4,7 @@ ___
 
 ## Description
 
-This was a project to write backend code using Node.js and MySQL.
+This was a project to write a **content management system** using Node.js and MySQL.
 
 I used three Node Package Modules: [MySQL2](https://www.npmjs.com/package/mysql2), [Inquirer](https://www.npmjs.com/package/inquirer), and [console.table package](https://www.npmjs.com/package/console.table).
 
